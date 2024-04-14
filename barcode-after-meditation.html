@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>Meditation Barcode</title>
+
+	<style type="text/css">
+
+		body {
+			background-color: #333;
+			color: #fff;
+		}
+
+		#barcode {
+			margin: 1em auto;
+			display: block;
+		}
+		
+	</style>
+	
+</head>
+
+<body>
+
+	<audio controls autoplay>
+		<source src="Meditation.mp3" type="audio/mp3">
+	</audio>
+
+	<img id="barcode" style="display: none; width: 800px; height: 400px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4NbAh6SDLNHZlEtulA-UpXVImxxe3XgAFVg6C9Z5u_w&s" />
+
+<script>
+
+	var audio = document.querySelector("audio");
+	var barcode = document.getElementById("barcode");
+	var time = 1000 * (60*6 + 20); // 1000 ms = 1 seconds
+
+	// count for how long the audio has been playing
+	audio.addEventListener("play", function() {
+
+		// display barcode after {time} milliseconds
+		setTimeout(function() {			
+			if (!audio.paused) {
+				barcode.style.display = "block";
+			}
+		}, time);
+
+	});
+
+	// remove barcode if not playing (to prevent cheating)
+	audio.addEventListener("pause", function() {
+		barcode.style.display = "none";
+	});
+
+</script>
+</body>
+</html>
